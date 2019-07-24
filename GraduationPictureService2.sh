@@ -51,7 +51,7 @@ do
 	for((y=57;y<=568;y=y+100))
 	do
 		#echo $x" "$y;
-		url="http://magnifier.flashphotography.com/MagnifyRender.ashx?X=$x&Y=$y&O=$O&R=$R&F=$F&A=$A&rand=0.07113776063264884";
+		url="http://magnifier.flashphotography.com/MagnifyRender.ashx?X=$x&Y=$y&O=27066401&R=00001&F=0170&A=71714&rand=0.8515203305886416";
 		echo $url;
 		wget -O ./original/image_$x"_"$y.png `echo $url`
 		convert -crop +36+36 ./original/image_$x"_"$y.png ./image_$x"_"$y.png
@@ -68,7 +68,7 @@ x=422;sd
 for((y=57;y<=568;y=y+100))
 do
 	#url=http://images1.flashphotography.com/Magnifier/MagnifyRender.ashx?X=$x\&Y=$y\&O=10000000\&R=00002\&F=0071\&A=71714\&rand=0.07113776063254884;
-	url="http://magnifier.flashphotography.com/MagnifyRender.ashx?X=$x&Y=$y&O=$O&R=$R&F=$F&A=$A&rand=0.07113776063264884";
+	url="http://magnifier.flashphotography.com/MagnifyRender.ashx?X=$x&Y=$y&O=27066401&R=00001&F=0170&A=71714&rand=0.8515203305886416";
 	wget -O ./original/image_$x"_"$y.png `echo $url`
 	convert -crop +36+36 ./original/image_$x"_"$y.png ./image_$x"_"$y.png
 	convert -crop -50-50 ./image_$x"_"$y.png ./image_$x"_"$y.png
