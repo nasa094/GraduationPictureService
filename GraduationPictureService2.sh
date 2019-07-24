@@ -43,23 +43,44 @@ url_base=`echo "${array[0]}"|sed 's/............$//'`
 
 
 
+
+	
 mkdir original
 mkdir combined
-for((x=60;x<=420;x=x+10))
+for((x=57;x<=422;x=x+100))
 do
 	Exec_append="convert -append ";
-	for((y=68;y<=568;y=y+10))
+	for((y=57;y<=568;y=y+100))
 	do
 		#echo $x" "$y;
 		url="http://magnifier.flashphotography.com/MagnifyRender.ashx?X=$x&Y=$y&O=27066401&R=00001&F=0170&A=71714&rand=0.8515203305886416";
 		echo $url;
 		wget -O ./original/image_$x"_"$y.jpg "http://magnifier.flashphotography.com/MagnifyRender.ashx?X=$x&Y=$y&O=27066401&R=00001&F=0170&A=71714&rand=0.8515203305886416"
-		#convert -crop 100x100+50+50 ./original/image_$x"_"$y.png ./image_$x"_"$y.png
-		
-		#Exec_append=$Exec_append"./image_$x"_"$y.png ";
+		convert -crop +36+36 ./original/image_$x"_"$y.jpg ./image_$x"_"$y.jpg
+		convert -crop -50-50 ./image_$x"_"$y.jpg ./image_$x"_"$y.jpg
+		Exec_append=$Exec_append"./image_$x"_"$y.jpg ";
 	done
-	
-	done
+	Exec_append=$Exec_append"./combined/"$x"_out.jpg";
+	eval $Exec_append;
+done
 
+
+Exec_append="convert -append ";
+x=422;sd
+for((y=57;y<=568;y=y+100))
+do
+url="http://magnifier.flashphotography.com/MagnifyRender.ashx?X=$x&Y=$y&O=27066401&R=00001&F=0170&A=71714&rand=0.8515203305886416";
+		echo $url;
+		wget -O ./original/image_$x"_"$y.jpg "http://magnifier.flashphotography.com/MagnifyRender.ashx?X=$x&Y=$y&O=27066401&R=00001&F=0170&A=71714&rand=0.8515203305886416"
+	convert -crop 36+36 ./original/image_$x"_"$y.jpg ./image_$x"_"$y.jpg
+	convert -crop -50-50 ./image_$x"_"$y.jpg ./image_$x"_"$y.jpg
+	Exec_append=$Exec_append"./image_$x"_"$y.jpg ";
+done
+Exec_append=$Exec_append"./combined/"$x"_out.jpg";
+eval $Exec_append;
+convert -crop +72+0 ./combined/422_out.jpg ./combined/422_out.jpg
+convert +append ./combined/57_out.jpg ./combined/157_out.jpg ./combined/257_out.jpg ./combined/357_out.jpg ./combined/422_out.jpg ./$O.jpg
+rm -rf *.jpg original combined
+echo "Finished Successfully!"
 
 echo "Finished Successfully!"
