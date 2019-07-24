@@ -40,11 +40,7 @@ echo ""
 read  -p "Paste here:" url_ori
 IFS='?' read -a array <<< "$url_ori"
 url_base=`echo "${array[0]}"|sed 's/............$//'`
-IFS='&' read -a array_para <<< "${array[1]}"
-O=`echo "${array_para[0]}"|sed 's/^..//'`
-R=`echo "${array_para[1]}"|sed 's/^..//'`
-F=`echo "${array_para[2]}"|sed 's/^..//'`
-A=`echo "${array_para[3]}"|sed 's/^..//'`
+
 
 
 mkdir original
@@ -54,8 +50,8 @@ do
 	Exec_append="convert -append ";
 	for((y=57;y<=568;y=y+100))
 	do
-		#echo $x" "$y;
-		url=$url_base"MagnifyRender.ashx?X=$x&Y=$y&O=$O&R=$R&F=$F&A=$A&rand=0.07113776063264884";
+		#echo $x" "$y; 
+		url="http://magnifier.flashphotography.com/MagnifyRender.ashx?X=$x&Y=$y&O=$O&R=$R&F=$F&A=$A&rand=0.07113776063264884";
 		echo $url;
 		wget -O ./original/image_$x"_"$y.png `echo $url`
 		convert -crop +36+36 ./original/image_$x"_"$y.png ./image_$x"_"$y.png
@@ -72,7 +68,7 @@ x=422;sd
 for((y=57;y<=568;y=y+100))
 do
 	#url=http://images1.flashphotography.com/Magnifier/MagnifyRender.ashx?X=$x\&Y=$y\&O=10000000\&R=00002\&F=0071\&A=71714\&rand=0.07113776063254884;
-	url=$url_base"MagnifyRender.ashx?X=$x&Y=$y&O=$O&R=$R&F=$F&A=$A&rand=0.07113776063254884";
+	url="http://magnifier.flashphotography.com/MagnifyRender.ashx?X=$x&Y=$y&O=$O&R=$R&F=$F&A=$A&rand=0.07113776063264884";
 	wget -O ./original/image_$x"_"$y.png `echo $url`
 	convert -crop +36+36 ./original/image_$x"_"$y.png ./image_$x"_"$y.png
 	convert -crop -50-50 ./image_$x"_"$y.png ./image_$x"_"$y.png
