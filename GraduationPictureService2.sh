@@ -53,8 +53,8 @@ do
 		#echo $x" "$y;
 		url="http://magnifier.flashphotography.com/MagnifyRender.ashx?X=$x&Y=$y&O=27066401&R=00001&F=0170&A=71714&rand=0.8515203305886416";
 		echo $url;
-		wget -O ./original/image_$x"_"$y.png `echo $url`
-		convert -crop 100x100+50+50 ./original/image_$x"_"$y.png ./image_$x"_"$y.png
+		wget -O ./original/image_$x"_"$y.png #`echo $url`
+		#convert -crop 100x100+50+50 ./original/image_$x"_"$y.png ./image_$x"_"$y.png
 		
 		Exec_append=$Exec_append"./image_$x"_"$y.png ";
 	done
